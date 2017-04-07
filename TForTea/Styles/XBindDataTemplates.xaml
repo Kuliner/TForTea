@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    x:Class="TForTea.Styles.XBindDataTemplates"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TForTea.Styles"
+    xmlns:viewModels="using:TForTea.ViewModels">
+
+    <!--  Add common x:Bind DataTemplates here  -->
+
+</ResourceDictionary>
