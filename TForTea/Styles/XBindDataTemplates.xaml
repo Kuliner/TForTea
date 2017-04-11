@@ -6,5 +6,4 @@
     xmlns:viewModels="using:TForTea.ViewModels">
 
     <!--  Add common x:Bind DataTemplates here  -->
-
 </ResourceDictionary>

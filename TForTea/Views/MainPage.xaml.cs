@@ -1,40 +1,31 @@
-﻿using TForTea.PageViewModels;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Toolkit.Prism.Mvvm;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
-
-// TODO: Sort usings and remove this Code Analysis suppression
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.Analyzers", "SA1210", Justification = "Template can't sort project's using")]
-
-namespace TForTea.Views
+﻿namespace TForTea.Views
 {
+    using JISoft.RatingControl;
+    using System;
+    using TForTea.Models;
+    using TForTea.ViewModels;
+    using Toolkit.Prism.Mvvm;
+
     public sealed partial class MainPage : MvvmPage
     {
         public MainPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        public MainPageViewModel ConcreteDataContext
+        public MainPageViewModel ViewModel
         {
             get
             {
-                return DataContext as MainPageViewModel;
+                return this.DataContext as MainPageViewModel;
             }
+        }
+
+        private void Rating_ValueChanged(object sender, EventArgs e)
+        {
+            var tea = (Tea)((Rating)sender).DataContext;
+            tea.Rate = ((Rating)sender).Value;
+            this.ViewModel.RatingTapped(tea);
         }
     }
 }

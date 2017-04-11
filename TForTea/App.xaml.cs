@@ -1,53 +1,34 @@
-﻿using Microsoft.Practices.Unity;
-using Prism.Mvvm;
-using Prism.Unity.Windows;
-using Prism.Windows.AppModel;
-using System;
-using System.Reflection;
-using System.Threading.Tasks;
-using Toolkit.Common.Strings;
-using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Resources;
-
-namespace TForTea
+﻿namespace TForTea
 {
+    using Microsoft.Practices.Unity;
+    using Prism.Unity.Windows;
+    using Prism.Windows.AppModel;
+    using System.Threading.Tasks;
+    using TForTea.Managers;
+    using TForTea.Services;
+    using Windows.ApplicationModel.Activation;
+    using Windows.ApplicationModel.Resources;
+
     public sealed partial class App : PrismUnityApplication
     {
         public App()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         protected override Task OnInitializeAsync(IActivatedEventArgs args)
         {
-            Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
-
-            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
-            {
-                var viewName = viewType.FullName;
-                if (viewName.Contains(".Views."))
-                {
-                    viewName = viewName.Replace(".Views.", ".PageViewModels.");
-                }
-                else
-                {
-                    throw new ArgumentException($"The specified View type {viewName} isn't in the Views namespace.");
-                }
-
-                //// TODO: Uncomment this if ViewModels are in a separate project
-                ////var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName.Replace("TForTea", "TForTea.ViewModel");
-                var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
-                var suffix = viewName.EndsWith("View") ? "Model" : "ViewModel";
-                var viewModelName = StringHelper.InvariantCulture($"{viewName}{suffix}, {viewAssemblyName}");
-                return Type.GetType(viewModelName);
-            });
+            this.Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
+            this.Container.RegisterType<LogManager>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<DatabaseManager>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<TeaProxyService>();
 
             return base.OnInitializeAsync(args);
         }
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            NavigationService.Navigate(nameof(PageTokens.Main), null);
+            this.NavigationService.Navigate(nameof(PageTokens.Main), null);
             return Task.FromResult(true);
         }
     }

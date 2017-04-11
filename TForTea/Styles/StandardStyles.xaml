@@ -14,5 +14,4 @@
             <SolidColorBrush x:Key="ApplicationMenuBackgroundThemeBrush">Black</SolidColorBrush>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-
 </ResourceDictionary>
