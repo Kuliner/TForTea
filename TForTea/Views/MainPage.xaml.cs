@@ -1,6 +1,6 @@
 ﻿namespace TForTea.Views
 {
-    using JISoft.RatingControl;
+    using Callisto.Controls;
     using System;
     using TForTea.Models;
     using TForTea.ViewModels;

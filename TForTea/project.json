@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "JISoft.Rating": "1.0.3",
+    "Callisto": "1.4.0",
     "MetroLog": "1.0.1",
     "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
@@ -8,7 +8,6 @@
     "Microsoft.Toolkit.Uwp.UI.Controls": "1.4.1",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "Prism.Unity": "6.2.0",
-    "StyleCop.Analyzers": "1.0.0",
     "Toolkit.Complete": "1.0.0-alpha5"
   },
   "frameworks": {

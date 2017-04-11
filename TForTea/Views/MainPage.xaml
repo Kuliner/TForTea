@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkitPrism="using:Toolkit.Prism.Mvvm"
-    xmlns:rate="using:JISoft.RatingControl"
+    xmlns:rate="using:Callisto.Controls"
     mc:Ignorable="d">
 
     <toolkitPrism:MvvmPage.Resources>
@@ -70,9 +70,9 @@
                                 FontWeight="Bold"
                                 MaxLines="1" />
                             <rate:Rating
-                                RatingItemCount="5"
-                                AllowSelectingZero="True"
-                                ReadOnly="False"
+         Foreground="GreenYellow"
+                            ItemCount="5"
+                            PointerOverFill="GreenYellow"                              
                                 Value="{Binding Rate, Mode=TwoWay}"
                                 ValueChanged="Rating_ValueChanged" />
                         </StackPanel>
