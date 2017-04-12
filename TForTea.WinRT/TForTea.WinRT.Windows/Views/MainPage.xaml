@@ -14,80 +14,80 @@
         <conv:BooleanToVisibilityConverter x:Key="BoolToVisConv" />
         <conv:InvertedBooleanToVisibilityConverter x:Key="InvertedBoolToVisConv" />
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Visibility="{Binding TeaDetailsVisible, Converter={StaticResource BoolToVisConv}}">
-            <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="60" />
-                </Grid.ColumnDefinitions>
-                <Image
-                    Grid.Column="0"
-                    Width="300"
-                    Height="200"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Source="{Binding SelectedTea.Image}"
-                    Stretch="Fill" />
-                <StackPanel
-                    Grid.Column="1"
-                    Margin="10,0,20,0"
-                    Orientation="Vertical">
-                    <TextBlock x:Uid="Tea.Name" />
-                    <TextBlock MaxLines="1">
-                        <Run x:Uid="TeaName" FontWeight="Bold" />
-                        <Run Text="{Binding SelectedTea.Name}" />
-                    </TextBlock>
-                    <TextBlock MaxLines="1">
-                        <Run x:Uid="TeaType" FontWeight="Bold" />
-                        <Run Text="{Binding SelectedTea.Type}" />
-                    </TextBlock>
-                    <TextBlock MaxLines="1">
-                        <Run x:Uid="TeaBrewTemp" FontWeight="Bold" />
-                        <Run Text="{Binding SelectedTea.BrewTemperature}" />
-                    </TextBlock>
-                    <TextBlock MaxLines="1">
-                        <Run x:Uid="TeaBrewTime" FontWeight="Bold" />
-                        <Run Text="{Binding SelectedTea.BrewTimeInMinutes}" />
-                    </TextBlock>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid Visibility="{Binding TeaDetailsVisible, Converter={StaticResource BoolToVisConv}}">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Width="300"
+                        Height="200"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Source="{Binding SelectedTea.Image}"
+                        Stretch="Fill" />
                     <StackPanel
-                        Height="50"
-                        Margin="0,10,0,0"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            x:Uid="TeaRate"
-                            VerticalAlignment="Center"
-                            FontWeight="Bold"
-                            MaxLines="1" />
-                        <calisto:Rating
-                            Foreground="GreenYellow"
-                            ItemCount="5"
-                            PointerOverFill="GreenYellow"
-                            Value="{Binding SelectedTea.Rate, Mode=TwoWay}">
-                            <i:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ValueChanged">
-                                    <core:InvokeCommandAction Command="{Binding ValueChangedCommand}" />
-                                </core:EventTriggerBehavior>
-                            </i:Interaction.Behaviors>
-                        </calisto:Rating>
+                        Grid.Column="1"
+                        Margin="10,0,20,0"
+                        Orientation="Vertical">
+                        <TextBlock x:Uid="Tea.Name" />
+                        <TextBlock MaxLines="1">
+                            <Run x:Uid="TeaName" FontWeight="Bold" />
+                            <Run Text="{Binding SelectedTea.Name}" />
+                        </TextBlock>
+                        <TextBlock MaxLines="1">
+                            <Run x:Uid="TeaType" FontWeight="Bold" />
+                            <Run Text="{Binding SelectedTea.Type}" />
+                        </TextBlock>
+                        <TextBlock MaxLines="1">
+                            <Run x:Uid="TeaBrewTemp" FontWeight="Bold" />
+                            <Run Text="{Binding SelectedTea.BrewTemperature}" />
+                        </TextBlock>
+                        <TextBlock MaxLines="1">
+                            <Run x:Uid="TeaBrewTime" FontWeight="Bold" />
+                            <Run Text="{Binding SelectedTea.BrewTimeInMinutes}" />
+                        </TextBlock>
+                        <StackPanel
+                            Height="50"
+                            Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                x:Uid="TeaRate"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                MaxLines="1" />
+                            <calisto:Rating
+                                Foreground="{ThemeResource ButtonForegroundThemeBrush}"
+                                ItemCount="5"
+                                PointerOverFill="{ThemeResource ButtonForegroundThemeBrush}"
+                                Value="{Binding SelectedTea.Rate, Mode=TwoWay}">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ValueChanged">
+                                        <core:InvokeCommandAction Command="{Binding ValueChangedCommand}" />
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </calisto:Rating>
+                        </StackPanel>
+                        <TextBlock Text="{Binding SelectedTea.Description}" TextWrapping="Wrap" />
                     </StackPanel>
-                    <TextBlock Text="{Binding SelectedTea.Description}" TextWrapping="Wrap" />
-                </StackPanel>
-                <Button
-                    Grid.Column="2"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Command="{Binding GoBackCommand}"
-                    Content="3"
-                    FontFamily="Marlett"
-                    FontSize="20" />
+                    <Button
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Command="{Binding GoBackCommand}"
+                        Content="3"
+                        FontFamily="Marlett"
+                        FontSize="20" />
+                </Grid>
             </Grid>
+            <GridView
+                ItemTemplate="{StaticResource TeaListItemTemplate}"
+                ItemsSource="{Binding TeaList}"
+                SelectedItem="{Binding SelectedTea, Mode=TwoWay}"
+                Visibility="{Binding TeaDetailsVisible, Converter={StaticResource InvertedBoolToVisConv}}" />
         </Grid>
-        <GridView
-            ItemTemplate="{StaticResource TeaListItemTemplate}"
-            ItemsSource="{Binding TeaList}"
-            SelectedItem="{Binding SelectedTea, Mode=TwoWay}"
-            Visibility="{Binding TeaDetailsVisible, Converter={StaticResource InvertedBoolToVisConv}}" />
-    </Grid>
 </Page>

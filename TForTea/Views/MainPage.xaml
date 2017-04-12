@@ -5,8 +5,8 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkitPrism="using:Toolkit.Prism.Mvvm"
     xmlns:rate="using:Callisto.Controls"
+    xmlns:toolkitPrism="using:Toolkit.Prism.Mvvm"
     mc:Ignorable="d">
 
     <toolkitPrism:MvvmPage.Resources>
@@ -70,11 +70,11 @@
                                 FontWeight="Bold"
                                 MaxLines="1" />
                             <rate:Rating
-         Foreground="GreenYellow"
-                            ItemCount="5"
-                            PointerOverFill="GreenYellow"                              
-                                Value="{Binding Rate, Mode=TwoWay}"
-                                ValueChanged="Rating_ValueChanged" />
+                                Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                                ItemCount="5"
+                                PointerOverFill="{ThemeResource SystemControlForegroundAccentBrush}"
+                                ValueChanged="Rating_ValueChanged"
+                                Value="{Binding Rate, Mode=TwoWay}" />
                         </StackPanel>
                         <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
                     </StackPanel>
@@ -85,6 +85,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <controls:MasterDetailsView
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemTemplate="{StaticResource ListTemplate}"
             ItemsSource="{Binding TeaList}" />
